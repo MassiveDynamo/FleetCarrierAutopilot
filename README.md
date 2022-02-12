@@ -10,13 +10,10 @@ This project is in progress and is not finished.
 ## Pre-requisites
 - You need a PC with minimun Windows 8.1 and ED installed
 - A Fleet Carrier
-- Optionally your ship or an alt on the FC (Fleet Carrier) as fuel transfer mechanism
+- Optionally your ship or an alt (alternate account) on the FC (Fleet Carrier) as fuel transfer mechanism
 
 ## How to contribute
 TBD
 
 ## Caveat Emptor
 Use at your own risk.
-
-
-
