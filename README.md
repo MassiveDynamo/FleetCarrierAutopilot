@@ -13,6 +13,10 @@ This project is in progress and is not finished.
 - Optionally your ship or an alt on the FC (Fleet Carrier) as fuel transfer mechanism
 
 ## How to contribute
+TBD
+
+## Caveat Emptor
+Use at your own risk.
 
 
 
