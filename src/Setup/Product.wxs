@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define Manufacturer = "MassiveDynamo" ?>
+<?define Name = "Fleet Carrier Autopilot" ?>
+<?define Version = "1.0.0" ?>
+<?define UpgradeCode = "{fe105dea-b559-4782-9779-43ebacc7ed08}" ?>
+<?define Description = "C# Fleet Carrier Autopilot" ?>
+<?define Comment = "C# Fleet Carrier Autopilot" ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+
+	<Product Id="*" Name="$(var.Name)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Version="$(var.Version)" Language="1033">
+
+		<!--Setup or Installer with properties-->
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" InstallPrivileges="limited" Description="$(var.Name)" Manufacturer="$(var.Manufacturer)" />
+
+		<!--Application logo-->
+		<Icon Id="Logo.ico" SourceFile="$(var.FleetCarrierAutopilotApp.TargetDir)\images\icons\logo.ico" />
+
+		<!--Application logo for Control Panel-->
+		<Property Id="ARPPRODUCTICON" Value="Logo.ico" />
+
+		<!--Embed Cabinet into single msi file-->
+		<Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />
+
+		<!-- Allow upgrades and prevent downgrades -->
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+		<!--Main Feature for this Setup which can be found in Fragment Tag with ComponentGroupRef Id-->
+		<Feature Id="ProductFeature" Title="$(var.Name)" Level="1">
+			<!--Main application executable component-->
+			<ComponentGroupRef Id="ProductComponents" />
+			<!--Main application shortcut for Program Menu-->
+			<ComponentRef Id="ApplicationShortcut" />
+			<!--Desktop shortcut-->
+			<ComponentGroupRef Id="ComponentGroupDesktopShortcut" />
+			<ComponentRef Id="INSTALLFOLDER" />
+			<ComponentRef Id="ROOTDIRECTORY" />
+		</Feature>
+	</Product>
+
+	<!--Fragment with details of installation directory-->
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="LocalAppDataFolder">
+				<!-- Create a folder inside program files with Company Name-->
+				<Directory Id="ROOTDIRECTORY" Name="$(var.Manufacturer)">
+					<!-- Create a folder inside Company Name folder with Product Name-->
+					<Directory Id="INSTALLFOLDER" Name="$(var.Name)">
+						<Directory Id="DesktopFolder" Name="DesktopFolder" />
+					</Directory>
+				</Directory>
+			</Directory>
+			<!--Create application folder in Program Menu-->
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="$(var.Name)" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<!--Main Feature Fragment with executable-->
+	<Fragment>
+		<!--ComponentGroup refering to install component in INSTALLFOLDER Directory-->
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="FleetCarrierAutopilotApp.exe" Guid="{49BB7F70-C33F-4CA7-B67D-720DBD464957}">
+				<File Id="FleetCarrierAutopilotApp.exe" Name="FleetCarrierAutopilotApp.exe" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.exe" />
+				<!-- Remove all files from the INSTALLFOLDER on uninstall -->
+				<RemoveFile Id="ALLFILES" Name="*.*" On="both" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.exe' KeyPath='yes' />
+			</Component>
+			<Component Id="FleetCarrierAutopilotApp.pdb" Guid="{BB728E02-41B2-4255-BA98-76E3445A0BEC}">
+				<File Id="FleetCarrierAutopilotApp.pdb" Name="FleetCarrierAutopilotApp.pdb" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.pdb" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.pdb' KeyPath='yes' />
+			</Component>
+			<Component Id="FleetCarrierAutopilotApp.dll" Guid="{6B26CE82-5602-4ECB-9021-90F104B40E4F}">
+				<File Id="FleetCarrierAutopilotApp.dll" Name="FleetCarrierAutopilotApp.dll" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.dll" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.dll' KeyPath='yes' />
+			</Component>
+			<Component Id="FleetCarrierAutopilotApp.dll.config" Guid="{85FE8452-CEAE-4A49-8BB5-A3474C7D05BA}">
+				<File Id="FleetCarrierAutopilotApp.dll.config" Name="FleetCarrierAutopilotApp.dll.config" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.dll.config" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.pdb' KeyPath='yes' />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="INSTALLFOLDER" Guid="{344E3AFF-D86B-43DB-93F1-97CEFF179DE5}">
+				<RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='INSTALLFOLDER' />
+			</Component>
+		</DirectoryRef>
+		<DirectoryRef Id="ROOTDIRECTORY">
+			<Component Id="ROOTDIRECTORY" Guid="{21CBDF0F-CC79-40A6-9D86-84C11116EC65}">
+				<RemoveFolder Id="ROOTDIRECTORY" On="uninstall" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='ROOTDIRECTORY' />
+			</Component>
+		</DirectoryRef>
+
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<!--Create application shortcut in Program Menu-->
+			<Component Id="ApplicationShortcut" Guid="*">
+				<Shortcut Id="ApplicationStartMenuShortcut" Name="$(var.Name)" Description="$(var.Description)" Icon="Logo.ico" Target="[#FleetCarrierAutopilotApp.exe]" WorkingDirectory="INSTALLFOLDER" />
+				<!--Remove application shortcut from Program Menu on uninstall-->
+				<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+				<!--Create application registry entry-->
+				<RegistryValue Root="HKCU" Key="Software\Microsoft\$(var.Manufacturer)\$(var.Name)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+
+	<Fragment>
+		<!--Desktop Shortcut-->
+		<ComponentGroup Id="ComponentGroupDesktopShortcut">
+			<Component Id="ComponentDesktopShortcut" Guid="*" Directory="DesktopFolder" >
+				<Shortcut Id="AppDesktopShortcut"
+						  Name="$(var.Name)"
+						  Description="$(var.Description)"
+						  Directory="DesktopFolder"
+						  Target="[#FleetCarrierAutopilotApp.exe]"
+						  WorkingDirectory="INSTALLFOLDER"/>
+				<!--Remove desktop shortcut on uninstall-->
+				<RemoveFolder Id="DesktopFolder" On="uninstall"/>
+				<RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.Name)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
