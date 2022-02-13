@@ -13,7 +13,8 @@ This project is in progress and is not finished.
 - Optionally your ship or an alt (alternate account) on the FC (Fleet Carrier) as fuel transfer mechanism
 
 ## How to contribute
-TBD
+- Install Visual Studio 2022 Community (https://visualstudio.microsoft.com/free-developer-offers/)
+- Install Wix Toolset Visual Studio 2022 (https://marketplace.visualstudio.com/items?itemName=WixToolset.WixToolsetVisualStudio2022Extension)
 
 ## Caveat Emptor
 Use at your own risk.
