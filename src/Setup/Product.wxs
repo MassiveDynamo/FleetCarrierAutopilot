@@ -72,13 +72,9 @@
 				<File Id="FleetCarrierAutopilotApp.pdb" Name="FleetCarrierAutopilotApp.pdb" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.pdb" />
 				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.pdb' KeyPath='yes' />
 			</Component>
-			<Component Id="FleetCarrierAutopilotApp.dll" Guid="{6B26CE82-5602-4ECB-9021-90F104B40E4F}">
-				<File Id="FleetCarrierAutopilotApp.dll" Name="FleetCarrierAutopilotApp.dll" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.dll" />
-				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.dll' KeyPath='yes' />
-			</Component>
-			<Component Id="FleetCarrierAutopilotApp.dll.config" Guid="{85FE8452-CEAE-4A49-8BB5-A3474C7D05BA}">
-				<File Id="FleetCarrierAutopilotApp.dll.config" Name="FleetCarrierAutopilotApp.dll.config" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.dll.config" />
-				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.pdb' KeyPath='yes' />
+			<Component Id="FleetCarrierAutopilotApp.exe.config" Guid="{85FE8452-CEAE-4A49-8BB5-A3474C7D05BA}">
+				<File Id="FleetCarrierAutopilotApp.exe.config" Name="FleetCarrierAutopilotApp.exe.config" Source="$(var.FleetCarrierAutopilotApp.TargetDir)FleetCarrierAutopilotApp.exe.config" />
+				<RegistryValue Root='HKMU' Key='SOFTWARE\$(var.Manufacturer)\$(var.Name)' Type='string' Value='FleetCarrierAutopilotApp.exe' KeyPath='yes' />
 			</Component>
 		</ComponentGroup>
 	</Fragment>
