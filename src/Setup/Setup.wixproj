@@ -51,7 +51,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
-  <Import Project="..\..\packages\wix\3.11.2\tools\wix.targets" Condition=" '$(WixTargetsPath)' == '' " />
+  <Import Project="..\..\packages\wix\3.11.2\tools\wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('..\..\packages\wix\3.11.2\tools\wix.targets') " />
   <Target Name="Restore">
     <Message Text="Restored called" Importance="high">
     </Message>
