@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?define Manufacturer = "MassiveDynamo" ?>
 <?define Name = "Fleet Carrier Autopilot" ?>
-<?define Version = "1.0.0" ?>
 <?define UpgradeCode = "{fe105dea-b559-4782-9779-43ebacc7ed08}" ?>
 <?define Description = "C# Fleet Carrier Autopilot" ?>
 <?define Comment = "C# Fleet Carrier Autopilot" ?>

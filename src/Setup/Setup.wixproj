@@ -2,6 +2,11 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\WiX.3.11.2\build\wix.props" Condition="Exists('..\..\packages\WiX.3.11.2\build\wix.props')" />
   <PropertyGroup>
+    <MajorVersion Condition=" '$(MajorVersion)' == '' ">1</MajorVersion>
+    <MinorVersion Condition=" '$(MinorVersion)' == '' ">0</MinorVersion>
+    <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
+    <Version Condition=" '$(Version)' == '' ">$(MajorVersion).$(MinorVersion).$(BuildNumber)</Version>
+    <DefineConstants>Version=$(Version)</DefineConstants>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
@@ -22,20 +27,16 @@
     </SuppressSpecificWarnings>
     <VerboseOutput>False</VerboseOutput>
     <SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
+    <CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
+    <CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WixExtension Include="WixNetFxExtension">
-      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
-      <Name>WixNetFxExtension</Name>
-    </WixExtension>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
