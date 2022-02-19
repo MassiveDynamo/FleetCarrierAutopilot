@@ -28,6 +28,7 @@
     <VerboseOutput>False</VerboseOutput>
     <SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
     <CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
