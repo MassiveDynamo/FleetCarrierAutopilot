@@ -33,7 +33,7 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
-    <CompilerAdditionalOptions>-dVersion=$(Version)-dVersion=$(Version)</CompilerAdditionalOptions>
+    <CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="NetFx48.wxs" />
