@@ -21,8 +21,8 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: List env
-      run: [Environment]::GetEnvironmentVariables()
+    - powershell: dir
+      displayName: List env
 
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
