@@ -5,7 +5,7 @@
 <?define Description = "C# Fleet Carrier Autopilot" ?>
 <?define Comment = "C# Fleet Carrier Autopilot" ?>
 
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 
 
 	<Product Id="*" Name="$(var.Name)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Version="$(var.Version)" Language="1033">
@@ -16,6 +16,11 @@
 		<!--Application logo-->
 		<Icon Id="Logo.ico" SourceFile="$(var.FleetCarrierAutopilotApp.TargetDir)\images\icons\logo.ico" />
 
+		<PropertyRef Id="WIX_IS_NETFRAMEWORK_48_OR_LATER_INSTALLED"/>
+		<Condition Message='This application requires .NET Framework 4.8.'>
+			<![CDATA[Installed OR WIX_IS_NETFRAMEWORK_48_OR_LATER_INSTALLED]]>
+		</Condition>
+		
 		<!--Application logo for Control Panel-->
 		<Property Id="ARPPRODUCTICON" Value="Logo.ico" />
 
@@ -24,6 +29,7 @@
 
 		<!-- Allow upgrades and prevent downgrades -->
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
 
 		<!--Main Feature for this Setup which can be found in Fragment Tag with ComponentGroupRef Id-->
 		<Feature Id="ProductFeature" Title="$(var.Name)" Level="1">
