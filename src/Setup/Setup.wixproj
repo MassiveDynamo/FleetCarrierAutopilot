@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\WiX.3.11.2\build\wix.props" Condition="Exists('..\..\packages\WiX.3.11.2\build\wix.props')" />
-  <PropertyGroup>
-    <MajorVersion Condition=" '$(MajorVersion)' == '' ">1</MajorVersion>
-    <MinorVersion Condition=" '$(MinorVersion)' == '' ">0</MinorVersion>
-    <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
-    <Version Condition=" '$(Version)' == '' ">$(MajorVersion).$(MinorVersion).$(BuildNumber)</Version>
-    <DefineConstants>Version=$(Version)</DefineConstants>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>8956d8b3-7119-4835-b0c2-e0183ceffece</ProjectGuid>
-    <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Install Fleet Carrier Autopilot</OutputName>
-    <OutputType>Package</OutputType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <SuppressPdbOutput>True</SuppressPdbOutput>
-    <SuppressSpecificWarnings>
-    </SuppressSpecificWarnings>
-    <VerboseOutput>False</VerboseOutput>
-    <SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
-    <CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
-    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
-    <CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Product.wxs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FleetCarrierAutopilotApp\FleetCarrierAutopilotApp.csproj">
-      <Name>FleetCarrierAutopilotApp</Name>
-      <Project>{3176f672-959c-4847-87fd-b9d16fc6011d}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
-  <Import Project="..\..\packages\wix\3.11.2\tools\wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('..\..\packages\wix\3.11.2\tools\wix.targets') " />
-  <Target Name="Restore">
-    <Message Text="Restored called" Importance="high">
-    </Message>
-  </Target>
-  <!-- prevents NU1503 -->
-  <Target Name="_IsProjectRestoreSupported" Returns="@(_ValidProjectsForRestore)">
-    <ItemGroup>
-      <_ValidProjectsForRestore Include="$(MSBuildProjectFullPath)" />
-    </ItemGroup>
-  </Target>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\WiX.3.11.2\build\wix.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\WiX.3.11.2\build\wix.props'))" />
-  </Target>
+	<Import Project="..\..\packages\WiX.3.11.2\build\wix.props" Condition="Exists('..\..\packages\WiX.3.11.2\build\wix.props')" />
+	<PropertyGroup>
+		<MajorVersion Condition=" '$(MajorVersion)' == '' ">1</MajorVersion>
+		<MinorVersion Condition=" '$(MinorVersion)' == '' ">0</MinorVersion>
+		<BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
+		<Version Condition=" '$(Version)' == '' ">$(MajorVersion).$(MinorVersion).$(BuildNumber)</Version>
+		<DefineConstants>Version=$(Version)</DefineConstants>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+		<ProductVersion>3.10</ProductVersion>
+		<ProjectGuid>8956d8b3-7119-4835-b0c2-e0183ceffece</ProjectGuid>
+		<SchemaVersion>2.0</SchemaVersion>
+		<OutputName>Install Fleet Carrier Autopilot</OutputName>
+		<OutputType>Package</OutputType>
+		<NuGetPackageImportStamp>
+		</NuGetPackageImportStamp>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+		<DefineConstants>Debug</DefineConstants>
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+		<SuppressPdbOutput>True</SuppressPdbOutput>
+		<SuppressSpecificWarnings>
+		</SuppressSpecificWarnings>
+		<VerboseOutput>False</VerboseOutput>
+		<SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
+		<CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
+		<LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+		<SuppressIces>ICE57;ICE91;ICE69</SuppressIces>
+		<CompilerAdditionalOptions>-dVersion=$(Version)</CompilerAdditionalOptions>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Product.wxs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="packages.config" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\FleetCarrierAutopilotApp\FleetCarrierAutopilotApp.csproj">
+			<Name>FleetCarrierAutopilotApp</Name>
+			<Project>{3176f672-959c-4847-87fd-b9d16fc6011d}</Project>
+			<Private>True</Private>
+			<DoNotHarvest>True</DoNotHarvest>
+			<RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+			<RefTargetDir>INSTALLFOLDER</RefTargetDir>
+		</ProjectReference>
+	</ItemGroup>
+	<Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+	<Import Project="..\..\packages\wix\3.11.2\tools\wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('..\..\packages\wix\3.11.2\tools\wix.targets') " />
+	<Target Name="_GenerateRestoreGraphProjectEntry" />
+	<Target Name="Restore">
+		<Message Text="Restored called" Importance="high">
+		</Message>
+	</Target>
+	<!-- prevents NU1503 -->
+	<Target Name="_IsProjectRestoreSupported" Returns="@(_ValidProjectsForRestore)">
+		<ItemGroup>
+			<_ValidProjectsForRestore Include="$(MSBuildProjectFullPath)" />
+		</ItemGroup>
+	</Target>
+	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+		<PropertyGroup>
+			<ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+		</PropertyGroup>
+		<Error Condition="!Exists('..\..\packages\WiX.3.11.2\build\wix.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\WiX.3.11.2\build\wix.props'))" />
+	</Target>
 </Project>
