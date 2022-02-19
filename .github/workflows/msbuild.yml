@@ -23,7 +23,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Display the build number
-      run: echo {{env.BUILDNUMBER}}
+      run: echo ${{env.BUILDNUMBER}}
       shell: powershell
 
     - name: Restore NuGet packages
