@@ -6,6 +6,10 @@ env:
   # Path to the solution file relative to the root of the project.
   SOLUTION_FILE_PATH: .
   BUILDNUMBER: ${{GITHUB.RUN_NUMBER}}
+  MajorVersion: 1
+  MinorVersion: 0
+  BuildUrl: ${{GITHUB.SERVER_URL}}/MassiveDynamo/FleetCarrierAutopilot/runs/${{GITHUB.RUN_ID}}
+  GitSha: ${{GITHUB.SHA}}
 
   # Configuration type to build.
   # You can convert this to a build matrix if you need coverage of multiple configuration types.
@@ -33,7 +37,7 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Version=1.0.${{env.BUILDNUMBER}} ${{env.SOLUTION_FILE_PATH}}
+      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Version=${{env.MajorVersion}}.${{env.MinorVersion}}.${{env.BUILDNUMBER}} /p:BuildUrl=${{env.BuildUrl}} /p:GitSha=${{env.GitSha}} ${{env.SOLUTION_FILE_PATH}}
 
     - name: Test
       run: vstest.console.exe ${{env.SOLUTION_FILE_PATH}}/src/Tests/UtilityTest/bin/Release/UtilityTest.dll

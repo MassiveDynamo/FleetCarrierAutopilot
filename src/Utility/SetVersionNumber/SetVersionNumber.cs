@@ -5,8 +5,8 @@ using System.Threading;
 
 public class SetVersionNumber : Microsoft.Build.Utilities.Task
 {
-    public int BuildNumber { get; set; }
     public string VersionFile { get; set; }
+    public string VersionNumber { get; set; }
 
     public override bool Execute()
     {
@@ -23,14 +23,14 @@ public class SetVersionNumber : Microsoft.Build.Utilities.Task
             return false;
         }
 
-        if( Regex.IsMatch(content, $"\"\\d+\\.\\d+\\.{BuildNumber}"))
+        if( Regex.IsMatch(content, $"\"${VersionNumber}"))
         {
-            Console.WriteLine($"{VersionFile} already contains {BuildNumber}, nothing to do");
+            Console.WriteLine($"{VersionFile} already contains {VersionNumber}, nothing to do");
             return true;
         }
         
         var pattern = @"(?<Major>\d+)\.(?<Minor>\d+)\.(?<BuildNumber>\d+)";
-        content = Regex.Replace(content, pattern, "${Major}.${Minor}." + BuildNumber);
+        content = Regex.Replace(content, pattern, VersionNumber);
         var attempts = 0;
         while (attempts++ < 5)
         {

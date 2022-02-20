@@ -3,7 +3,7 @@
 <?define Name = "Fleet Carrier Autopilot" ?>
 <?define UpgradeCode = "{fe105dea-b559-4782-9779-43ebacc7ed08}" ?>
 <?define Description = "C# Fleet Carrier Autopilot" ?>
-<?define Comment = "C# Fleet Carrier Autopilot" ?>
+<?define Comments = "C# Fleet Carrier Autopilot" ?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 
@@ -11,7 +11,7 @@
 	<Product Id="*" Name="$(var.Name)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)" Version="$(var.Version)" Language="1033">
 
 		<!--Setup or Installer with properties-->
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" InstallPrivileges="limited" Description="$(var.Name)" Manufacturer="$(var.Manufacturer)" />
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" InstallPrivileges="limited" Description="$(var.Name)" Manufacturer="$(var.Manufacturer)" Comments="$(var.Comments)"/>
 
 		<!--Application logo-->
 		<Icon Id="Logo.ico" SourceFile="$(var.FleetCarrierAutopilotApp.TargetDir)\images\icons\logo.ico" />

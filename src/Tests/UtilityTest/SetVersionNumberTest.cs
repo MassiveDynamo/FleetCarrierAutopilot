@@ -6,10 +6,10 @@ namespace FCTests
     public class UtilityTests
     {
         [TestMethod]
-        public void SetBuildNumberTo42()
+        public void SetVersionNumber()
         {
             var util = new SetVersionNumber();
-            util.BuildNumber = 42;
+            util.VersionNumber = "12.6.42";
             util.VersionFile = "GlobalVersion.cs";
             Assert.IsTrue(util.Execute());
         }
