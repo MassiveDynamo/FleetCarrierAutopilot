@@ -60,7 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="..\..\GlobalVersion.cs">
+    <Compile Include="..\GlobalVersion.cs">
       <Link>Properties\GlobalVersion.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -103,5 +103,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\SetVersionNumber\SetVersionNumber.csproj">
+      <Project>{7bc41064-5af8-4317-a755-7f709f6a18a3}</Project>
+      <Name>SetVersionNumber</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="SetBuildNumber" BeforeTargets="CoreCompile">
+    <Message Text="BuildNumber:  $(BuildNumber)" Importance="high" />
+  </Target>
 </Project>

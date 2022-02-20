@@ -22,10 +22,6 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Display the build number
-      run: echo ${{env.BUILDNUMBER}}
-      shell: powershell
-
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
@@ -35,6 +31,9 @@ jobs:
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Version=1.0.${{env.BUILDNUMBER}} ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Test
+      run: '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" ${{env.SOLUTION_FILE_PATH}}/src/Tests/**/*Test.dll'
 
     - name: Archive setup artifacts
       uses: actions/upload-artifact@v2

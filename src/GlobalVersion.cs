@@ -1,8 +1,4 @@
-﻿using System;
+﻿using System.Reflection;
 
-public class Class1
-{
-	public Class1()
-	{
-	}
-}
+[assembly: AssemblyVersion( "1.0.0")]
+[assembly: AssemblyFileVersion("1.0.0")]
